@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Update Thing</h1>
+<p><a href="/">List</a></p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-thing}" th:object="${thing}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr><tr>
+            <td>Magic Script</td>
+            <td><input type="text" th:field="*{magicScript}"></td>
+        </tr><tr>
+            <td>Mana Need</td>
+            <td><input type="text" th:field="*{manaNeed}"></td>
+        </tr><tr>
+            <td><input type="submit" value="Update Thing"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/create-thing">Create new thing</a>
+<h1><a href="/" style="text-decoration: none">Things</a></h1>
+<th:block th:if="${message}">
+<p th:text="${message}"></p>
+</th:block>
+<form method="post" th:action="@{/search}">
+    <input type="text" name="word" placeholder="Search">
+    <select  name="stt">
+        <option value="ASC" selected>Tăng dần</option>
+        <option value="DESC">Giảm dần</option>
+    </select>
+    <input id="search" type="submit" value="Search">
+</form>
+<table border="1">
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Magic Script</th>
+        <th>Mana Need</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="thing,istart :${things}">
+        <tr>
+            <td th:text="${istart.index+1}"></td>
+            <td th:text="${thing.name}"></td>
+            <td th:text="${thing.magicScript}"></td>
+            <td th:text="${thing.manaNeed}"></td>
+            <td><a th:href="@{/edit-thing/__${thing.id}__}">Edit</a></td>
+            <td><a th:href="@{/delete-thing/__${thing.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
